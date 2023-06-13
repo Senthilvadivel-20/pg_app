@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,5 +23,80 @@
 {% endif %}
     
 </body>
-</html>
+</html> -->
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS for navigation bar */
+        .navbar {
+            background-color: #f2f2f2;
+            overflow: hidden;
+        }
+        
+        .navbar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+        
+        .navbar .icon {
+            float: right;
+        }
+        
+        .navbar .icon i {
+            font-size: 20px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        {% if user.is_authenticated %}
+        <div class="icon">
+            <a href="{% url 'logout' %}">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+        {% else %}
+        <div class="icon">
+            <a href="{% url 'login' %}">
+                <i class="fas fa-user"></i>
+            </a>
+            
+        </div>
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <h1>Welcome {{ user }}!</h1>
+
+    <script>
+        var myJavaScriptVariable = "{{ user }}";
+        console.log(myJavaScriptVariable);
+        // Use the variable in your JavaScript code
+    </script>
+
+    {% else %}
+    <h1>Welcome, Kindly login</h1>
+    {% endif %}
+
+
+</body>
+</html>
