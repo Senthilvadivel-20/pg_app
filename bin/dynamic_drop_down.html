@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var data = JSON.parse($('#data').text());
+
+            function displaySelectedArray() {
+                var dropdown = document.getElementById("dropdown");
+                var selectedKey = dropdown.value;
+
+                var selectedArray = data[selectedKey];
+
+                // Display the selected array
+                var resultElement = document.getElementById("result");
+                resultElement.innerText = selectedArray;
+            }
+
+            $('#dropdown').change(displaySelectedArray);
+        });
+    </script>
+</head>
+<body>
+    <label for="dropdown">Select an array:</label>
+    <select id="dropdown">
+        {% for key, values in my_dict.items %}
+            <option value="{{ key }}">{{ key }}</option>
+        {% endfor %}
+    </select>
+
+    <div id="result"></div>
+
+    {% json_script my_dict id="data" %}
+</body>
+</html>
